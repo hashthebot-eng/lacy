@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: my-web-app
+    env: node # Change to python, go, ruby, docker, etc. depending on your tech stack
+    buildCommand: npm install # Change to your app's build command
+    startCommand: npm start # Change to your app's start command
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: auto-postgres-db
+          property: connectionString
+
+databases:
+  - name: auto-postgres-db
+    plan: free
